@@ -1,4 +1,4 @@
-name: cdxgen and Trivy from src
+name: SBOM from src
 
 on:
   workflow_dispatch:
@@ -36,8 +36,16 @@ jobs:
             -t docker.io/aquasec/trivy:latest fs /app \
             --format "cyclonedx" \
             --scanners vuln,license \
-            --output "/tmp/trivy-sbom-${{ inputs.src_dir }}.json"
+            --output "/tmp/trivy-sbom.json"
 
+      - name: SCA OpenSCA
+        run: |
+          docker run --rm \
+            -v "$(pwd)/${{ inputs.src_dir }}":/app:rw \
+            -v /tmp:/tmp \
+            -ti opensca/opensca-cli \
+            -out /tmp/OpenSCA_sbom.cdx.json
+            
       - name: artifact name
         id: artifactname
         run: |
