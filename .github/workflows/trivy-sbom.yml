@@ -41,7 +41,7 @@ jobs:
       - name: SCA OpenSCA
         run: |
           docker run --rm \
-            -v "$(pwd)/${{ inputs.src_dir }}":/app:rw \
+            -v "$(pwd)/${{ inputs.src_dir }}":/src:rw \
             -v /tmp:/tmp \
             -t docker.io/opensca/opensca-cli \
             -out /tmp/OpenSCA_sbom.cdx.json
