@@ -36,7 +36,7 @@ jobs:
             -t docker.io/aquasec/trivy:latest fs /app \
             --format "cyclonedx" \
             --scanners vuln,license \
-            --output /tmp/trivy-sbom.json
+            --output "/tmp/trivy-sbom-${{ inputs.src_dir }}.json"
 
       - name: artifact name
         id: artifactname
