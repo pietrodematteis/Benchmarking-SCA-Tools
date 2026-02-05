@@ -33,7 +33,7 @@ jobs:
           docker run --rm \
             -v "$(pwd)/${{ inputs.src_dir }}":/app:rw \
             -v /tmp:/tmp \
-            -t docker.io/aquasec/trivy:latest fs . \
+            -t docker.io/aquasec/trivy:latest fs /app \
             --format "cyclonedx" \
             --scanners vuln,license \
             --output /tmp/trivy-sbom.json
