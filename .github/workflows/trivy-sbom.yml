@@ -43,7 +43,7 @@ jobs:
           docker run --rm \
             -v "$(pwd)/${{ inputs.src_dir }}":/app:rw \
             -v /tmp:/tmp \
-            -ti opensca/opensca-cli \
+            -t docker.io/opensca/opensca-cli \
             -out /tmp/OpenSCA_sbom.cdx.json
             
       - name: artifact name
